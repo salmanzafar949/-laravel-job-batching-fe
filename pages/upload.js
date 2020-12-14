@@ -1,12 +1,11 @@
 import React from 'react';
-import Link from "next/link";
+import Layout from "../components/Layout";
 
 export default function upload(){
 
     return (
-        <div>
-            <Link href='/'>Home</Link>
-            <Link href='/upload'>Upload</Link>
-        </div>
+        <Layout>
+            <h1> Upload </h1>
+        </Layout>
     )
 }
