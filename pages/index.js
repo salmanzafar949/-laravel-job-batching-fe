@@ -6,13 +6,7 @@ export default function index(){
 
   return (
       <Layout>
-        <div className="flex h-screen ">
-          <div className="m-auto">
-            <h1>
-              Hello
-            </h1>
-          </div>
-        </div>
+          <h1> Hello World</h1>
       </Layout>
   )
 }

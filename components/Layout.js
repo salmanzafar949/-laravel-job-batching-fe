@@ -15,7 +15,12 @@ export default function Layout({children})
                     Upload
                 </a>
             </Link>
-            {children}
+            <div className="flex h-screen ">
+                <div className="m-auto">
+                    {children}
+                </div>
+            </div>
+
         </div>
     );
 }
