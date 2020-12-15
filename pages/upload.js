@@ -24,11 +24,11 @@ export default function upload(){
 
     function batchDetails()
     {
-        const batchId = "923fc877-9818-487c-a8e0-0624e87dc75a";
+        const batchId = "923fcef0-5ffc-4c89-8725-0a80e42b37f7";
 
         fetch(`${API_URL}batch?id=${batchId}`)
             .then(res => res.json())
-            .then(data => console.log(data))
+            .then(data => setBatchInfo(data))
     }
 
     useEffect(() => {
@@ -37,13 +37,27 @@ export default function upload(){
 
     return (
         <Layout>
-            <h1 className="text-xl text-gray-800 text-center mb-5">
-                Choose a File to Upload
-            </h1>
-            <form onSubmit={handleForm} className="border rounded p-4">
-                <input type="file" ref={fileRef}/>
-                <input type="submit" className="px-4 py-2 bg-gray-700 rounded text-white"/>
-            </form>
+            {
+                batchInfo &&
+                <section>
+                    Upload is in Progress
+                    <p>
+                        <progress value={batchInfo.progress} max={100}/>
+                    </p>
+                </section>
+            }
+            {
+                !batchInfo &&
+                <section>
+                    <h1 className="text-xl text-gray-800 text-center mb-5">
+                        Choose a File to Upload
+                    </h1>
+                    <form onSubmit={handleForm} className="border rounded p-4">
+                        <input type="file" ref={fileRef}/>
+                        <input type="submit" className="px-4 py-2 bg-gray-700 rounded text-white"/>
+                    </form>
+                </section>
+            }
         </Layout>
     )
 }
