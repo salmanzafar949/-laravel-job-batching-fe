@@ -41,6 +41,8 @@ export default function upload(){
                 console.log(progressRef.current)
                 if (data.progress === 100){
                     clearInterval(progressRef.current)
+                    setBatchInfo({})
+                    setBatchId(null)
                 }
 
                 setBatchInfo(data)
@@ -62,6 +64,13 @@ export default function upload(){
         }
 
     },[batchId]);
+
+
+    useEffect(() => {
+        fetch(`${API_URL}batch/in-progress`)
+            .then(res => res.json())
+            .then(data => setBatchId(data.id))
+    },[]);
 
     return (
         <Layout>
