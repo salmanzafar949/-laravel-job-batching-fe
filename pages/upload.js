@@ -67,9 +67,13 @@ export default function upload(){
 
 
     useEffect(() => {
-        fetch(`${API_URL}batch/in-progress`)
-            .then(res => res.json())
-            .then(data => setBatchId(data.id))
+        if (batchId !== null)
+        {
+            fetch(`${API_URL}batch/in-progress`)
+                .then(res => res.json())
+                .then(data => setBatchId(data.id))
+        }
+
     },[]);
 
     return (
