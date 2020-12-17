@@ -37,12 +37,22 @@ export default function upload(){
 
         fetch(`${API_URL}batch?id=${currentBatchId}`)
             .then(res => res.json())
-            .then(data => setBatchInfo(data))
+            .then(data => {
+                console.log(progressRef.current)
+                if (data.progress === 100){
+                    clearInterval(progressRef.current)
+                }
+
+                setBatchInfo(data)
+            })
     }
+
+    const progressRef = useRef('')
 
     function updateProgress()
     {
-        setInterval(() => batchDetails(), 2000)
+        if (progressRef.current !== "") return;
+        progressRef.current = setInterval(() => batchDetails(), 2000)
     }
 
     useEffect(() => {
@@ -68,7 +78,6 @@ export default function upload(){
 
                         </div>
                     </div>
-                    <progress value={batchInfo.progress} max={100}/>
                 </section>
             }
             {
